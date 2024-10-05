@@ -2,12 +2,12 @@ const express = require("express");
 const path = require("path");
 const fs = require("fs").promises; // Usamos la versión de promesas de fs
 const cors = require("cors");
-
+const morgan = require("morgan");
 const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-
+app.use(morgan("dev"));
 async function obtenerProductos() {
     const productos = JSON.parse(
         await fs.readFile(path.join(__dirname, "../public/js/carrito.json"), "utf-8")

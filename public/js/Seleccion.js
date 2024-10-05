@@ -1,6 +1,6 @@
 
 import {activarBoton,productosActualizados} from "./ActivarBotones.js"
-
+import {carritoID} from './InputBusqueda.js'
 
 
 
@@ -11,7 +11,7 @@ const seleccionar = document.getElementById("seleccionar");
 const carritoInput= document.getElementById("carrito-input");  
 const carritoCompras=document.getElementById('carrito-compras') 
  let seleccion=document.querySelector(".select")  
- let carritoID=[]
+ //let carritoID=[]
  console.log(seleccion)
 
 function crearBotones() {
@@ -32,7 +32,7 @@ seleccion.addEventListener('click', (e) => {
 }, { once: true });  
 
 
- (async()=>{ 
+/*  (async()=>{ 
 
     try{ 
         const reponse=await fetch(`http://localhost:5000/carrito/productos`,{ 
@@ -57,7 +57,7 @@ seleccion.addEventListener('click', (e) => {
         return err
     }
 
- })() 
+ })()  */
 
 
 
@@ -66,7 +66,7 @@ seleccion.addEventListener('click', (e) => {
  async function todosLosProducts(){  
     carritoFiltrado.innerHTML=''
 
-    carritoID.forEach((producto,i)=>{  
+  carritoID.length > 0 &&  carritoID.forEach((producto,i)=>{  
         const contenedorDiv = document.createElement('div');
         contenedorDiv.classList.add('tarjeta');
         let color = document.createElement('p');
@@ -75,7 +75,7 @@ seleccion.addEventListener('click', (e) => {
         contenedorDiv.innerHTML += `
             <h2 class="titulo__tarjeta">${producto.nombre}</h2> 
         
-            <img class="imagenes__tarjeta" src="${producto.imagen}" alt="">
+            <img class="imagenes__tarjeta" src="${producto.imagen ? producto.imagen : ''}" alt="">
         `; 
         color.textContent = 'Color: ' + producto.color; 
         precio.textContent = '$' + producto.precio;
@@ -110,7 +110,7 @@ seleccion.addEventListener('click', (e) => {
     
  seleccionar.addEventListener('change', (e) => {
     let valorSeleccion = e.target.value; 
-
+console.log('valor seleccion',valorSeleccion)
     let productosFiltrados = carritoID.filter(producto => producto.categoria === valorSeleccion);
 
     if (productosFiltrados.length > 0) {  

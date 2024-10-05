@@ -74,7 +74,7 @@ export async function recibirDataID() {
     }  
 
     
-    console.log(datos)
+    console.log('recibir datos por id -->', datos)
 
    
 
@@ -155,5 +155,5 @@ document.getElementById('icon-overlay').addEventListener('click', () => {
 
 
 document.addEventListener("DOMContentLoaded", async () => {
-    await recibirDataID();
+    /* await recibirDataID(); */
 }); 

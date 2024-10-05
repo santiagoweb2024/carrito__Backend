@@ -7,7 +7,7 @@ const informacion = document.getElementById('seccion-info');
 const carritoInput= document.getElementById("carrito-input");  
 const carritoCompras=document.getElementById('carrito-compras') 
 const carritoSeleccion=document.getElementById("carrito-filtrado")
-let carritoID=[]
+export let carritoID=[]
 
 
 function crearBotones() {
@@ -18,7 +18,7 @@ function crearBotones() {
 }    
 
 (async()=>{ 
-
+   
     try{ 
         const reponse=await fetch(`http://localhost:5000/carrito/productos`,{ 
             method:"GET",
@@ -34,7 +34,7 @@ function crearBotones() {
         }  
 
         carritoID= await reponse.json()
-       console.log(carritoID)
+       console.log( 'datos iniciales',carritoID)
     } 
 
     catch(err){
